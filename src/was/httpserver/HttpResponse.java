@@ -8,7 +8,7 @@ public class HttpResponse {
     private final PrintWriter writer;
     private int statusCode = 200;
     private final StringBuilder bodyBuilder = new StringBuilder();
-    private String contentType = "text/html charset=UTF-8";
+    private String contentType = "text/html; charset=UTF-8";
 
     public HttpResponse(PrintWriter writer) {
         this.writer = writer;
