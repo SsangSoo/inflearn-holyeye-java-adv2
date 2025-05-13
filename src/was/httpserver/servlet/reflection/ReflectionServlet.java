@@ -29,7 +29,7 @@ public class ReflectionServlet implements HttpServlet {
                 String methodName = method.getName();
                 if (path.equals("/" + methodName)) {
                     invoke(controller, method, request, response);
-
+                    return;
                 }
             }
         }
