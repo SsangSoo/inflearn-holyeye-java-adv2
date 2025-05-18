@@ -27,8 +27,15 @@ public class AnnotationServletV3 implements HttpServlet {
             for (Method method : methods) {
                 if (method.isAnnotationPresent(Mapping.class)) {
                     String path = method.getAnnotation(Mapping.class).value();
-                    // 중복 경로 체크 todo
+
+                    // 중복 경로 체크
+                    if (pathMap.containsKey(path)) {
+                        ControllerMethod controllerMethod = pathMap.get(path);
+                        throw new IllegalStateException("경로 중복 등록, path=" + path + ", method=" + method + ", 이미 등록된 메서드=" + controllerMethod.method);
+                    }
+
                     pathMap.put(path, new ControllerMethod(controller, method));
+
                 }
             }
         }
